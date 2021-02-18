@@ -1,12 +1,20 @@
+import os #operating system
+
 #讀取檔案
-products = []
-with open('products.csv','r', encoding = 'utf-8') as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue #繼續，跳到下一回 (不會跳出迴圈<> break: 逃出迴圈)
-		name, price = line.strip().split(',')
-		products.append([name, price])
-print(products)
+products = []  #不管檔案是否存在，都要有products空清單加入商品
+if os.path.isfile('products.csv'): #檢查檔案在不在
+	print('找到檔案!')
+	with open('products.csv','r', encoding = 'utf-8') as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue #繼續，跳到下一回 (不會跳出迴圈<> break: 逃出迴圈)
+			name, price = line.strip().split(',')
+			products.append([name, price])
+	print(products)
+
+else:
+	print('此檔案不存在!')
+
 
 #讓使用者輸入
 products = []
